@@ -1,0 +1,8 @@
+name: "RW Boilerplate Plugin"
+main: de.omegazirkel.risingworld.NewPlugin
+version: 0.1.0-SNAPSHOT
+author: "Maik 'Devidian' Laschober"
+team: "Omega Zirkel"
+description: "This Plugin is a boilerplate for creating RisingWorld Plugins"
+license: EMS
+website: coming soon
