@@ -80,6 +80,13 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 		String[] cmd = command.split(" ");
 
 		if (cmd[0].equals("/" + pluginCMD)) {
+			// Invalid number of arguments (0)
+			if (cmd.length < 2) {
+				player.sendTextMessage(c.error + pluginName + ":>" + c.text
+						+ t.get("MSG_CMD_ERR_ARGUMENTS", lang).replace("PH_CMD", c.error + command + c.text)
+								.replace("PH_COMMAND_HELP", c.command + "/" + pluginCMD + " help\n" + c.text));
+				return;
+			}
 			String option = cmd[1];
 			switch (option) {
 
