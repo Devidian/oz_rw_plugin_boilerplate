@@ -1,6 +1,8 @@
 package de.omegazirkel.risingworld;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.util.Properties;
@@ -8,6 +10,7 @@ import java.util.Properties;
 import de.omegazirkel.risingworld.tools.Colors;
 import de.omegazirkel.risingworld.tools.FileChangeListener;
 import de.omegazirkel.risingworld.tools.I18n;
+import de.omegazirkel.risingworld.tools.PluginChangeWatcher;
 import net.risingworld.api.Plugin;
 import net.risingworld.api.Server;
 import net.risingworld.api.events.EventMethod;
@@ -40,6 +43,17 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 		t = t != null ? t : new I18n(this);
 		registerEventListener(this);
 		this.initSettings();
+
+		// For plugin updates
+		try {
+			PluginChangeWatcher WU = new PluginChangeWatcher(this);
+			File f = new File(getPath());
+			WU.watchDir(f);
+			WU.startListening();
+		} catch (IOException ex) {
+			log.out(ex.getMessage(), 999);
+		}
+
 		log.out(pluginName + " Plugin is enabled", 10);
 	}
 
@@ -128,11 +142,11 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 			in.close();
 
 			// fill global values
-			logLevel = Integer.parseInt(settings.getProperty("logLevel"));
-			sendPluginWelcome = settings.getProperty("sendPluginWelcome").contentEquals("true");
+			logLevel = Integer.parseInt(settings.getProperty("logLevel","0"));
+			sendPluginWelcome = settings.getProperty("sendPluginWelcome","true").contentEquals("true");
 
 			// restart settings
-			restartOnUpdate = settings.getProperty("restartOnUpdate").contentEquals("true");
+			restartOnUpdate = settings.getProperty("restartOnUpdate","true").contentEquals("true");
 			log.out(pluginName + " Plugin settings loaded", 10);
 		} catch (Exception ex) {
 			log.out("Exception on initSettings: " + ex.getMessage(), 100);

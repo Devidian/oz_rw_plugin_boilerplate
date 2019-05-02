@@ -1,2 +1,2 @@
 ## [Unreleased]
-- initiales plugin, basis features
+- initial plugin, basic features

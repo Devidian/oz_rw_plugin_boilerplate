@@ -16,9 +16,9 @@
 		<dependency>
 			<groupId>de.omegazirkel.risingworld</groupId>
 			<artifactId>tools</artifactId>
-			<version>0.4.1</version>
+			<version>0.6.0</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/../libs/tools-0.4.1.jar</systemPath>
+			<systemPath>${basedir}/../libs/tools-0.6.0.jar</systemPath>
 		</dependency>
 	</dependencies>
 	<build>
