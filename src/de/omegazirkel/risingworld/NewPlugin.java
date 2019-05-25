@@ -32,7 +32,7 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 
 	// Settings
 	static int logLevel = 0;
-	static boolean restartOnUpdate = true;
+	static boolean restartOnUpdate = false;
 	static boolean sendPluginWelcome = false;
 	// END Settings
 
@@ -106,7 +106,7 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 
 			case "info":
 				String infoMessage = t.get("CMD_INFO", lang);
-				player.sendTextMessage(c.okay + pluginName + ":> " + infoMessage);
+				player.sendTextMessage(c.okay + pluginName + ":> " + c.text + infoMessage);
 				break;
 			case "help":
 				String helpMessage = t.get("CMD_HELP", lang)
@@ -142,11 +142,11 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 			in.close();
 
 			// fill global values
-			logLevel = Integer.parseInt(settings.getProperty("logLevel","0"));
-			sendPluginWelcome = settings.getProperty("sendPluginWelcome","true").contentEquals("true");
+			logLevel = Integer.parseInt(settings.getProperty("logLevel", "0"));
+			sendPluginWelcome = settings.getProperty("sendPluginWelcome", "false").contentEquals("true");
 
 			// restart settings
-			restartOnUpdate = settings.getProperty("restartOnUpdate","true").contentEquals("true");
+			restartOnUpdate = settings.getProperty("restartOnUpdate", "false").contentEquals("true");
 			log.out(pluginName + " Plugin settings loaded", 10);
 		} catch (Exception ex) {
 			log.out("Exception on initSettings: " + ex.getMessage(), 100);
