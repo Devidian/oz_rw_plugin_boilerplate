@@ -2,7 +2,7 @@ package de.omegazirkel.risingworld;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
+// import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.util.Properties;
@@ -46,12 +46,10 @@ public class NewPlugin extends Plugin implements Listener, FileChangeListener {
 
 		// For plugin updates
 		try {
-			PluginChangeWatcher WU = new PluginChangeWatcher(this);
 			File f = new File(getPath());
-			WU.watchDir(f);
-			WU.startListening();
-		} catch (IOException ex) {
-			log.out(ex.getMessage(), 999);
+			PluginChangeWatcher.registerFileChangeListener(this, f);
+		} catch (Exception ex) {
+			log.out(ex.toString(), 911);
 		}
 
 		log.out(pluginName + " Plugin is enabled", 10);

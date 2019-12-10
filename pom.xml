@@ -9,7 +9,7 @@
 		<dependency>
 			<groupId>net.risingworld</groupId>
 			<artifactId>PluginAPI</artifactId>
-			<version>0.9.5.4</version>
+			<version>0.9.6</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/../libs/PluginAPI.jar</systemPath>
 		</dependency>
